@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("SrvInstaller1C")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Управление службами 1С:Предприятие")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SrvInstaller1C")]

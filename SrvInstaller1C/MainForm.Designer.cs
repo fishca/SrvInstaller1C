@@ -1,6 +1,6 @@
 ﻿namespace SrvInstaller1C
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.ButtonDel = new System.Windows.Forms.Button();
-            this.ButtonEdit = new System.Windows.Forms.Button();
-            this.ButtonAdd = new System.Windows.Forms.Button();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.ListViewExistedServices = new System.Windows.Forms.ListView();
             this.ServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClusterFiles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.ButtonDel = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.linkLabel4);
-            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.ListViewExistedServices);
             this.groupBox1.Controls.Add(this.linkLabel3);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.linkLabel1);
@@ -62,27 +62,59 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Установленные службы \"1С:Предприятие 8\"";
             // 
-            // linkLabel1
+            // linkLabel4
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(6, 375);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(59, 13);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Запустить";
+            this.linkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(702, 375);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(95, 13);
+            this.linkLabel4.TabIndex = 4;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "Обновить список";
             // 
-            // linkLabel2
+            // ListViewExistedServices
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(67, 375);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(67, 13);
-            this.linkLabel2.TabIndex = 1;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Остановить";
+            this.ListViewExistedServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListViewExistedServices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ServiceName,
+            this.Status,
+            this.Port,
+            this.ClusterFiles,
+            this.PathName});
+            this.ListViewExistedServices.Location = new System.Drawing.Point(6, 19);
+            this.ListViewExistedServices.Name = "ListViewExistedServices";
+            this.ListViewExistedServices.Size = new System.Drawing.Size(780, 353);
+            this.ListViewExistedServices.TabIndex = 3;
+            this.ListViewExistedServices.UseCompatibleStateImageBehavior = false;
+            this.ListViewExistedServices.View = System.Windows.Forms.View.Details;
+            // 
+            // ServiceName
+            // 
+            this.ServiceName.Text = "Имя службы";
+            this.ServiceName.Width = 249;
+            // 
+            // Status
+            // 
+            this.Status.Text = "Состояние";
+            this.Status.Width = 85;
+            // 
+            // Port
+            // 
+            this.Port.Text = "Порт";
+            this.Port.Width = 50;
+            // 
+            // ClusterFiles
+            // 
+            this.ClusterFiles.Text = "Каталог файлов кластера";
+            this.ClusterFiles.Width = 197;
+            // 
+            // PathName
+            // 
+            this.PathName.Text = "Строка запуска";
+            this.PathName.Width = 525;
             // 
             // linkLabel3
             // 
@@ -95,23 +127,27 @@
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "Перезапустить";
             // 
-            // listView1
+            // linkLabel2
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ServiceName,
-            this.Status,
-            this.Port,
-            this.ClusterFiles,
-            this.PathName});
-            this.listView1.Location = new System.Drawing.Point(6, 19);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(780, 353);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(67, 375);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(67, 13);
+            this.linkLabel2.TabIndex = 1;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Остановить";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(6, 375);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(59, 13);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Запустить";
             // 
             // ButtonDel
             // 
@@ -153,43 +189,7 @@
             this.ButtonAdd.UseVisualStyleBackColor = true;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // linkLabel4
-            // 
-            this.linkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(702, 375);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(95, 13);
-            this.linkLabel4.TabIndex = 4;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Обновить список";
-            // 
-            // ServiceName
-            // 
-            this.ServiceName.Text = "Имя службы";
-            this.ServiceName.Width = 249;
-            // 
-            // Status
-            // 
-            this.Status.Text = "Состояние";
-            this.Status.Width = 85;
-            // 
-            // Port
-            // 
-            this.Port.Text = "Порт";
-            this.Port.Width = 50;
-            // 
-            // ClusterFiles
-            // 
-            this.ClusterFiles.Text = "Каталог файлов кластера";
-            this.ClusterFiles.Width = 197;
-            // 
-            // PathName
-            // 
-            this.PathName.Text = "Строка запуска";
-            this.PathName.Width = 525;
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,8 +198,9 @@
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonAdd);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Управление службами 1С";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -209,7 +210,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView ListViewExistedServices;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
