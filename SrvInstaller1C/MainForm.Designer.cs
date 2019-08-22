@@ -42,6 +42,7 @@
             this.ButtonDel = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             this.Port,
             this.ClusterFiles,
             this.PathName});
+            this.ListViewExistedServices.HideSelection = false;
             this.ListViewExistedServices.Location = new System.Drawing.Point(6, 19);
             this.ListViewExistedServices.Name = "ListViewExistedServices";
             this.ListViewExistedServices.Size = new System.Drawing.Size(780, 353);
@@ -189,11 +191,26 @@
             this.ButtonAdd.UseVisualStyleBackColor = true;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Image = global::SrvInstaller1C.Properties.Resources.info;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(623, 399);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(165, 45);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "О программе";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ButtonDel);
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonAdd);
@@ -223,6 +240,7 @@
         private System.Windows.Forms.ColumnHeader Port;
         private System.Windows.Forms.ColumnHeader ClusterFiles;
         private System.Windows.Forms.ColumnHeader PathName;
+        private System.Windows.Forms.Button button1;
     }
 }
 

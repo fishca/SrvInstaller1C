@@ -90,5 +90,11 @@ namespace SrvInstaller1C
 
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            
+            aboutBox.ShowDialog();
+        }
     }
 }
