@@ -26,7 +26,8 @@ namespace SrvInstaller1C
         {
             textBox1.Text = "";
             textBox1.Text += "Service installer for 1C:Enterprise 8 http://infostart.ru/public/178238/" + Environment.NewLine;
-            textBox1.Text += "Автор https://github.com/alekseybochkov/ServiceInstaller1C Алексей Бочков";
+            textBox1.Text += "Автор https://github.com/alekseybochkov/ServiceInstaller1C Алексей Бочков" + Environment.NewLine;
+            textBox1.Text += "Перевод на рельсы С# Рудаков Сергей";
 
         }
     }

@@ -22,7 +22,17 @@ namespace SrvInstaller1C
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            if (ListViewExistedServices.SelectedItems.Count > 0)
+            {
+                var Item = ListViewExistedServices.SelectedItems[0];
+                /*
+                foreach (var Serv in ArrayOfServices)
+                {
 
+                }
+                */
+
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
