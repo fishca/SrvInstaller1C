@@ -39,10 +39,10 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.ButtonDel = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,8 @@
             this.ListViewExistedServices.TabIndex = 3;
             this.ListViewExistedServices.UseCompatibleStateImageBehavior = false;
             this.ListViewExistedServices.View = System.Windows.Forms.View.Details;
+            this.ListViewExistedServices.SelectedIndexChanged += new System.EventHandler(this.ListViewExistedServices_SelectedIndexChanged);
+            this.ListViewExistedServices.Click += new System.EventHandler(this.ListViewExistedServices_Click);
             // 
             // ServiceName
             // 
@@ -151,6 +153,20 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Запустить";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Image = global::SrvInstaller1C.Properties.Resources.info;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(623, 399);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(165, 45);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "О программе";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // ButtonDel
             // 
             this.ButtonDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -163,6 +179,7 @@
             this.ButtonDel.Text = "Удалить выделенную службу";
             this.ButtonDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonDel.UseVisualStyleBackColor = true;
+            this.ButtonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // ButtonEdit
             // 
@@ -176,6 +193,7 @@
             this.ButtonEdit.Text = "Изменить выделенную службу";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonAdd
             // 
@@ -190,20 +208,6 @@
             this.ButtonAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonAdd.UseVisualStyleBackColor = true;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Image = global::SrvInstaller1C.Properties.Resources.info;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(623, 399);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 45);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "О программе";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // MainForm
             // 
