@@ -73,6 +73,7 @@
             this.linkLabel4.TabIndex = 4;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "Обновить список";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // ListViewExistedServices
             // 

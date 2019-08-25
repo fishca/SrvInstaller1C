@@ -9,16 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using System.ServiceProcess;
-
+//using Microsoft.Win32;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Diagnostics;
 
 namespace SrvInstaller1C
 {
+
+
+
     public partial class MainForm : Form
     {
+        [DllImport("msi.dll", CharSet = CharSet.Unicode)]
+        static extern Int32 MsiGetProductInfo(string product, string property, [Out] StringBuilder valueBuf, ref Int32 len);
+
         public struct InstalledServices
         {
             public string ProductType;
             public string ProductName;
+            public string InstallLocation;
             public string ExePath;
             public string ProductID;
             public string ProductVersion;
@@ -76,6 +86,18 @@ namespace SrvInstaller1C
         {
             Text = Application.ProductName + " / " + "_" + " / " + Application.ProductVersion;
             RefreshListService();
+            GetListOfAllInstalledPlatforms();
+        }
+
+        public string GetProductProperty(string productID, string sProperty)
+        {
+            //string lsIKC = new string(' ', 255);
+            StringBuilder lsIKC = new StringBuilder(" ", 255);
+            int liLen = 255;
+
+            MsiGetProductInfo(productID, sProperty, lsIKC, ref liLen);
+        
+            return lsIKC.ToString().Substring(0, liLen).Trim();
         }
 
 
@@ -105,6 +127,87 @@ namespace SrvInstaller1C
                 }
             }
 
+        }
+
+        public void AddAccesibleServices(string InstallLocation, string ProductName)
+        {
+
+            FileInfo FileServer1C = new FileInfo(Path.Combine(InstallLocation, "bin\ragent.exe"));
+            if (FileServer1C.Exists)
+            {
+                FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(FileServer1C.FullName);
+
+                InstalledServices Service1C = new InstalledServices();
+
+                Service1C.InstallLocation = InstallLocation;
+                Service1C.ProductType = "AppServer";
+                Service1C.ProductName = ProductName;
+                Service1C.ProductVersion = myFileVersionInfo.ProductVersion;
+                Service1C.ExePath = FileServer1C.FullName;
+
+                ListInstalledServices.Add(Service1C);
+            }
+
+
+            FileInfo FileServerRepo = new FileInfo(Path.Combine(InstallLocation, "bin\\crserver.exe"));
+            if (FileServerRepo.Exists)
+            {
+                FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(FileServer1C.FullName);
+
+                InstalledServices Service1C = new InstalledServices();
+
+                Service1C.InstallLocation = InstallLocation;
+                Service1C.ProductType = "CRServer";
+                Service1C.ProductName = ProductName;
+                Service1C.ProductVersion = myFileVersionInfo.ProductVersion;
+                Service1C.ExePath = FileServer1C.FullName;
+
+                ListInstalledServices.Add(Service1C);
+            }
+
+            FileInfo FileServerRas = new FileInfo(Path.Combine(InstallLocation, "bin\\ras.exe"));
+            if (FileServerRas.Exists)
+            {
+                FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(FileServer1C.FullName);
+
+                InstalledServices Service1C = new InstalledServices();
+
+                Service1C.InstallLocation = InstallLocation;
+                Service1C.ProductType = "RASServer";
+                Service1C.ProductName = ProductName;
+                Service1C.ProductVersion = myFileVersionInfo.ProductVersion;
+                Service1C.ExePath = FileServer1C.FullName;
+
+                ListInstalledServices.Add(Service1C);
+            }
+
+        }
+
+        public void GetListOfAllInstalledPlatforms()
+        {
+            StringBuilder sb = new StringBuilder(39);
+
+            MSI_ERROR _error_ = MSI_ERROR.ERROR_SUCCESS;
+
+            int index = 0;
+
+            while (_error_ == MSI_ERROR.ERROR_SUCCESS)
+            {
+                string productID = sb.ToString();
+                if (_error_ == MSI_ERROR.ERROR_SUCCESS)
+                {
+                    string a1 = GetProductProperty(productID, "Publisher");
+                    if (a1 == "1C")
+                    {
+                        string InstallLocation = GetProductProperty(productID, "InstallLocation");
+                        string ProductName = GetProductProperty(productID, "ProductName");
+
+                        AddAccesibleServices(InstallLocation, ProductName);
+                    }
+
+                }
+                index += 1;
+            }
         }
 
         /// <summary>
@@ -248,6 +351,11 @@ namespace SrvInstaller1C
             {
                 MessageBox.Show("Необходимо выделить строку со службой сервера 1С, которую требуется изменить.");
             }
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RefreshListService();
         }
     }
 }
