@@ -21,8 +21,16 @@ namespace SrvInstaller1C
 
     public partial class MainForm : Form
     {
+
+        //[DllImport("msi.dll", EntryPoint = "MsiEnumProductsExW", CharSet = CharSet.Unicode, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+        //public static extern uint MsiEnumProductsEx(string szProductCode, string szUserSid, uint dwContext, uint dwIndex, string szInstalledProductCode, out object pdwInstalledProductContext, string szSid, ref uint pccSid)
+        [DllImport("msi.dll", EntryPoint = "MsiEnumProducts", CharSet = CharSet.Unicode, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+        public static extern uint MsiEnumProducts(int szProductCode, StringBuilder szUserSid);
+
+
         [DllImport("msi.dll", CharSet = CharSet.Unicode)]
-        static extern Int32 MsiGetProductInfo(string product, string property, [Out] StringBuilder valueBuf, ref Int32 len);
+        //static extern Int32 MsiGetProductInfo(string product, string property, [Out] StringBuilder valueBuf, ref Int32 len);
+        static extern Int32 MsiGetProductInfo(string product, string property, [Out] string valueBuf, ref Int32 len);
 
         public struct InstalledServices
         {
@@ -34,7 +42,7 @@ namespace SrvInstaller1C
             public string ProductVersion;
         }
 
-        public enum MSI_ERROR
+        public enum MSI_ERROR : uint
         {
             ERROR_SUCCESS           = 0,
             ERROR_MORE_DATA         = 234,
@@ -89,10 +97,73 @@ namespace SrvInstaller1C
             GetListOfAllInstalledPlatforms();
         }
 
+        public string GetErrorDescription(int ErrorNumber)
+        {
+            string Desc = "";
+
+            if (ErrorNumber == 5)
+            {
+                //ERROR_ACCESS_DENIED	
+                Desc = "The handle does not have access to the service.";
+            }
+            else if (ErrorNumber == 1059)
+            {
+                // ERROR_CIRCULAR_DEPENDENCY	
+                Desc = "A circular service dependency was specified.";
+
+            }
+            else if (ErrorNumber == 1065)
+            {
+                // ERROR_DATABASE_DOES_NOT_EXIST	
+                Desc = "The specified database does not exist.";
+            }
+            else if (ErrorNumber == 1078)
+            {
+                // ERROR_DUPLICATE_SERVICE_NAME	
+                Desc = "The display name already exists in the service control manager database either as a service name or as another display name.";
+            }
+            else if (ErrorNumber == 6)
+            {
+                // ERROR_INVALID_HANDLE	---------------
+                Desc = "The handle to the specified service control manager database is invalid.";
+            }
+            else if (ErrorNumber == 123)
+            {
+                // ERROR_INVALID_NAME	
+                Desc = "The specified service name is invalid.";
+            }
+            else if (ErrorNumber == 87)
+            {
+                // ERROR_INVALID_PARAMETER		
+                Desc = "A parameter that was specified is invalid.";
+            }
+            else if (ErrorNumber == 1057)
+            {
+                // ERROR_INVALID_SERVICE_ACCOUNT		
+                Desc = "The account name does not exist, or a service is specified to share the same binary file as an already installed service but with an account name that is not the same as the installed service.";
+            }
+            else if (ErrorNumber == 1060)
+            {
+                // ERROR_SERVICE_DOES_NOT_EXIST		
+                Desc = "The specified service does not exist.";
+            }
+            else if (ErrorNumber == 1072)
+            {
+                // ERROR_SERVICE_MARKED_FOR_DELETE			
+                Desc = "The service has been marked for deletion.";
+            }
+            else if (ErrorNumber == 1073)
+            {
+                // ERROR_SERVICE_EXISTS			
+                Desc = "The specified service already exists in this database.";
+            }
+            
+            return "№ " + ErrorNumber.ToString() + " - " + Desc;
+        }
         public string GetProductProperty(string productID, string sProperty)
         {
-            //string lsIKC = new string(' ', 255);
-            StringBuilder lsIKC = new StringBuilder(" ", 255);
+            string lsIKC = new string(' ', 255);
+            //StringBuilder lsIKC = new StringBuilder(" ", 255);
             int liLen = 255;
 
             MsiGetProductInfo(productID, sProperty, lsIKC, ref liLen);
@@ -193,7 +264,30 @@ namespace SrvInstaller1C
 
             while (_error_ == MSI_ERROR.ERROR_SUCCESS)
             {
+
+                if (MsiEnumProducts(index, sb) == 0)
+                {
+                    _error_ = MSI_ERROR.ERROR_SUCCESS;
+                }
+                else if (MsiEnumProducts(index, sb) == 234)
+                {
+                    _error_ = MSI_ERROR.ERROR_MORE_DATA;
+                }
+                else if (MsiEnumProducts(index, sb) == 259)
+                {
+                    _error_ = MSI_ERROR.ERROR_NO_MORE_ITEMS;
+                }
+                else if (MsiEnumProducts(index, sb) == 87)
+                {
+                    _error_ = MSI_ERROR.ERROR_INVALID_PARAMETER;
+                }
+                else if (MsiEnumProducts(index, sb) == 1610)
+                {
+                    _error_ = MSI_ERROR.ERROR_BAD_CONFIGURATION;
+                }
+
                 string productID = sb.ToString();
+
                 if (_error_ == MSI_ERROR.ERROR_SUCCESS)
                 {
                     string a1 = GetProductProperty(productID, "Publisher");
