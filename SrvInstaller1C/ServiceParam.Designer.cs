@@ -58,6 +58,8 @@
             this.Label7 = new System.Windows.Forms.Label();
             this.Button4 = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
+            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.GroupBox1.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -169,6 +171,7 @@
             this.Button3.TabIndex = 14;
             this.Button3.Text = "-1000";
             this.Button3.UseVisualStyleBackColor = true;
+            this.Button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Label5
             // 
@@ -187,6 +190,7 @@
             this.Button2.TabIndex = 14;
             this.Button2.Text = "+1000";
             this.Button2.UseVisualStyleBackColor = true;
+            this.Button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // PortAgent
             // 
@@ -277,6 +281,7 @@
             this.Button1.TabIndex = 25;
             this.Button1.Text = "Выбрать";
             this.Button1.UseVisualStyleBackColor = true;
+            this.Button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ServiceName
             // 
@@ -302,6 +307,7 @@
             this.Button6.TabIndex = 26;
             this.Button6.Text = "Выбрать";
             this.Button6.UseVisualStyleBackColor = true;
+            this.Button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // ExeFile
             // 
@@ -351,6 +357,7 @@
             this.ButtonSave.Text = "Сохранить изменения";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ServiceParam
             // 
@@ -417,5 +424,7 @@
         internal System.Windows.Forms.TextBox ExeFile;
         internal System.Windows.Forms.TextBox ClusterFiles;
         internal System.Windows.Forms.Label Label7;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
     }
 }

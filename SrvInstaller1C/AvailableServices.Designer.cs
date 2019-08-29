@@ -71,6 +71,8 @@
             this.ListAllServices.TabIndex = 20;
             this.ListAllServices.UseCompatibleStateImageBehavior = false;
             this.ListAllServices.View = System.Windows.Forms.View.Details;
+            this.ListAllServices.SelectedIndexChanged += new System.EventHandler(this.ListAllServices_SelectedIndexChanged);
+            this.ListAllServices.DoubleClick += new System.EventHandler(this.ListAllServices_DoubleClick);
             // 
             // ItemServiceType
             // 
@@ -127,6 +129,7 @@
             this.Button1.Text = "Новая служба сервера хранилища";
             this.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Button1.UseVisualStyleBackColor = true;
+            this.Button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ButtonAdd
             // 
@@ -139,6 +142,7 @@
             this.ButtonAdd.Text = "Новая служба сервера приложений";
             this.ButtonAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonAdd.UseVisualStyleBackColor = true;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // AvailableServices
             // 

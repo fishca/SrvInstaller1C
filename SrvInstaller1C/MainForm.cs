@@ -94,7 +94,7 @@ namespace SrvInstaller1C
         {
             Text = Application.ProductName + " / " + "_" + " / " + Application.ProductVersion;
             RefreshListService();
-            GetListOfAllInstalledPlatforms();
+            //GetListOfAllInstalledPlatforms();
         }
 
         public string GetErrorDescription(int ErrorNumber)
